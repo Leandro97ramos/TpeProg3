@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+8import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -41,6 +41,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		
 	}
 	
+
+/* Complejidad:O(1)
+   No requiere recorrer todos los arcos del gráfico, solo accede directamente a la lista asociada al vértice
+*/
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
 		Arco<T> arc = new Arco<>(verticeId1, verticeId2, etiqueta);
 		if (!existeArco(verticeId1, verticeId2)) {			
@@ -77,11 +81,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	
 	public boolean contieneVertice(int verticeId) {
 		return false;
-	}
-	
-	
+}
+
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2){
-		//Iterator<Arco<T>> iteradorVertices = graf.get(verticeId1);
 		return null;
 	}
 	
@@ -92,6 +94,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	public int cantidadArcos() {
 		return 0;
 	}
+/*Complejidad:	O(1), El costo es constante */
 	public  Iterator<Integer>  obtenerVertices(){
 		Set<Integer> verticesSet = graf.keySet();
 		return verticesSet.iterator();
@@ -101,6 +104,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return null;
 	}
 	
+/*Complejidad:	O(n), El costo está determinado por el número total de arcos en el gráfico. */
 	public Iterator<Arco<T>> obtenerArcos() {
 		List<Arco<T>> listaArcos = new ArrayList<>();
 	    for (List<Arco<T>> arcs : graf.values()) {
@@ -108,6 +112,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	    }
 	    return listaArcos.iterator();
 	}
+
+/*Complejidad:	O(1),No se realiza un recorrido completo de todos los arcos del gráfico, solo se accede directamente a la lista correspondiente al vértice. El costo es constante, no depende del tamaño  */
+
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
 	    List<Arco<T>> listaArcos = graf.get(verticeId);
 	    if (listaArcos != null) {
