@@ -1,5 +1,4 @@
-8import java.util.ArrayList;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -75,24 +74,43 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 	
 	public void borrarArco(int verticeId1 , int verticeId2) {
-		
-
+		if (existeArco(verticeId1, verticeId2)) {
+			List<Arco<T>> listaArcos = graf.get(verticeId1);
+			Iterator<Arco<T>> it = listaArcos.iterator();
+			while (it.hasNext()) {
+				Arco<T> arco = it.next();
+				if (arco.getVerticeDestino() == verticeId2) {
+					it.remove();
+				}
+			}
+		}
 	}
 	
 	public boolean contieneVertice(int verticeId) {
-		return false;
-}
+		return graf.containsKey(verticeId);
+	}
 
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2){
+		List<Arco<T>> listaArcos = graf.get(verticeId1);
+		for (Arco<T> arco : listaArcos) {
+			if (arco.getVerticeDestino() == verticeId2) {
+				return arco;
+			}
+		}
 		return null;
 	}
 	
 	public int cantidadVertices() {
-		return 0;
+		return graf.size();
+
 	}
 	
 	public int cantidadArcos() {
-		return 0;
+		int cantidad = 0;
+		for (List<Arco<T>> listaArcos : graf.values()) {
+			cantidad += listaArcos.size();
+		}
+		return cantidad;
 	}
 /*Complejidad:	O(1), El costo es constante */
 	public  Iterator<Integer>  obtenerVertices(){
@@ -101,7 +119,16 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 	
 	public Iterator<Integer> obtenerAdyacentes(int verticeId){
-		return null;
+		List<Integer> listaAdyacentes = new ArrayList<>();
+	    List<Arco<T>> listaArcos = graf.get(verticeId);
+	    if (listaArcos != null) {
+	        for (Arco<T> arco : listaArcos) {
+	            listaAdyacentes.add(arco.getVerticeDestino());
+	        }
+	    }
+	    return listaAdyacentes.iterator();
+
+		
 	}
 	
 /*Complejidad:	O(n), El costo está determinado por el número total de arcos en el gráfico. */
@@ -121,8 +148,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	        return listaArcos.iterator();
 	    } else {
 	    	return null;
-	     //   return Collections.emptyIterator();
 	    }
+	}
+	/* */
+
+	@Override
+	public int getCantidadEstaciones() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getCantidadEstaciones'");
+	}
+
+	@Override
+	public int getDistancia(int estacionActual, int i) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getDistancia'");
 	}
 }
 

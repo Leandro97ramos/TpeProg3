@@ -4,6 +4,9 @@ import java.util.List;
 public class main {
 
 	public static void main(String[] args) {
+		/*
+		  
+	
 		GrafoDirigido<Integer> grafo = new GrafoDirigido<Integer>();
 		grafo.agregarVertice(1);
 		grafo.agregarVertice(38);
@@ -32,6 +35,20 @@ public class main {
 		    Integer vertice = iteradorVertices.next();
 		    System.out.println("Vértice: " + vertice);
 		}
+	 */
+		String path = "data/dataSet.csv";
+        CSVReader reader = new CSVReader(path);
+        reader.read();
+
+
+
+		
+        // Obtener resultados del algoritmo Backtracking
+        
+
+        // Verificar solución Backtracking
+     
+
 	}
 
 }
