@@ -38,44 +38,36 @@ public class main {
 		 * }
 		 */
 
+		 /*llamo a CsvReader */
 		String path = "data/dataSet.csv";
 		CSVReader reader = new CSVReader(path);
 		GrafoDirigido<Integer> grafo = reader.read();
+
 		Backtracking backtracking = new Backtracking();
+		List<Arco<Integer>> rutaOptimaBacktracking = backtracking.backtr(grafo);
 
-		List<Arco<Integer>> rutaOptimaBktr = backtracking.backtr(grafo);
-		int metricaCombinaciones = backtracking.getCombinaciones();
-		System.out.println("Número de combinaciones generadas: " + metricaCombinaciones);
-
-		System.out.println(rutaOptimaBktr);
-
-		for (Arco<Integer> tunel : rutaOptimaBktr) {
+		for (Arco<Integer> tunel : rutaOptimaBacktracking) {
 			System.out.println("EstacionA: " + tunel.getVerticeOrigen());
 			System.out.println("EstacionB: " + tunel.getVerticeDestino());
 			System.out.println("Distancia: " + tunel.getEtiqueta());
 			System.out.println();
 		}
+		//combinaicones de backtracking
+		System.out.println("Combinaciones de backtracking: " + backtracking.getCombinaciones());
 
-		// System.out.println(grafo.obtenerListArcos());
+		Greedy greedy = new Greedy();
+		List<Arco<Integer>> rutaOptimaGreedy = greedy.encontrarRutaOptima(grafo);
+		for (Arco<Integer> tunel : rutaOptimaGreedy) {
+			System.out.println("EstacionA: " + tunel.getVerticeOrigen());
+			System.out.println("EstacionB: " + tunel.getVerticeDestino());
+			System.out.println("Distancia: " + tunel.getEtiqueta());
+			System.out.println();
+		}
+		//combinaciones de greedy
+		System.out.println("Combinaciones de greedy: " + greedy.getCombinaciones());
+		
 
-		/*
-		 * backtracking
-		 * List<Integer> rutaOptimaBktr = backtracking.backtr(grafo);
-		 */
-
-		// leer grafo
-		/*
-		 * Iterator<Integer> iteradorVertices = grafo.obtenerVertices();
-		 * while (iteradorVertices.hasNext()) {
-		 * Integer vertice = iteradorVertices.next();
-		 * System.out.println("Vértice: " + vertice);
-		 * }
-		 */
-		// GrafoDirigido<Integer> grafo = new GrafoDirigido<Integer>();
-
-		// Obtener resultados del algoritmo Backtracking
-
-		// Verificar solución Backtracking
+	
 
 	}
 
