@@ -35,57 +35,7 @@ public class CSVReader {
         
         return grafo;
     }
-    /* 
-    Backtracking backtracking = new Backtracking();
-    List<Integer> rutaOptimaBktr = backtracking.backtr(grafo);
-    int distanciaBacktracking = calcularDistanciaRuta(grafo, rutaOptimaBktr);
-    verificarSolucion("Backtracking", rutaOptimaBktr, distanciaBacktracking, 0);
-
-    // Backtracking
-
-    // Greedy
-    Greedy greedy = new Greedy();
-    List<Integer> tunelesGreedy = greedy.solve(grafo);
-    System.out.println(tunelesGreedy);
-    int distanciaGreedy = calcularDistanciaRuta(grafo, tunelesGreedy);
-    verificarSolucion("Greedy", tunelesGreedy, distanciaGreedy, 0);
-    */
-
-    private int calcularDistanciaRuta(GrafoDirigido<Integer> grafo, List<Integer> ruta) {
-        int distanciaTotal = 0;
-        for (int i = 0; i < ruta.size() - 1; i++) {
-            int origen = ruta.get(i);
-            int destino = ruta.get(i + 1);
-            Arco<Integer> arco = grafo.obtenerArco(origen, destino);
-
-            if (arco != null) {
-                int distancia = arco.getEtiqueta();
-                distanciaTotal += distancia;
-            } 
-        }
-        return distanciaTotal;
-    }
-
-    public void verificarSolucion(String tecnica, List<Integer> tuneles, int metrosTotales, int costo) {
-        //salto de linea
-        System.out.println("\n");
-       
-        System.out.println("Técnica utilizada: " + tecnica);
-
-        System.out.println("Lista de túneles a construir:");
-        for (int i = 0; i < tuneles.size() - 1; i += 2) {
-            int estacion1 = tuneles.get(i);
-            int estacion2 = tuneles.get(i + 1);
-            System.out.println("Estación " + estacion1 + " - Estación " + estacion2);
-        }
-
-        System.out.println("Cantidad de metros totales a construir: " + metrosTotales);
-        System.out.println("Costo de encontrar la solución: " + costo);
-
-        System.out.println("\n");
-
-    }
-
+    
     private ArrayList<String[]> readContent() {
         ArrayList<String[]> lines = new ArrayList<String[]>();
 
