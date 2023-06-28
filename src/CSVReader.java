@@ -13,7 +13,7 @@ public class CSVReader {
         this.path = path;
     }
 
-    public void read() {
+    public GrafoDirigido<Integer> read()  {
 
         // Obtengo una lista con las lineas del archivo
         // lines.get(0) tiene la primer linea del archivo
@@ -32,21 +32,24 @@ public class CSVReader {
             grafo.agregarVertice(destino);
             grafo.agregarArco(origen, destino, etiqueta);
         }
-        Backtracking backtracking = new Backtracking();
-        List<Integer> rutaOptimaBktr = backtracking.backtr(grafo);
-        int distanciaBacktracking = calcularDistanciaRuta(grafo, rutaOptimaBktr);
-        verificarSolucion("Backtracking", rutaOptimaBktr, distanciaBacktracking, 0);
-
-        // Backtracking
-
-        // Greedy
-        Greedy greedy = new Greedy();
-        List<Integer> tunelesGreedy = greedy.solve(grafo);
-        System.out.println(tunelesGreedy);
-        int distanciaGreedy = calcularDistanciaRuta(grafo, tunelesGreedy);
-        verificarSolucion("Greedy", tunelesGreedy, distanciaGreedy, 0);
-
+        
+        return grafo;
     }
+    /* 
+    Backtracking backtracking = new Backtracking();
+    List<Integer> rutaOptimaBktr = backtracking.backtr(grafo);
+    int distanciaBacktracking = calcularDistanciaRuta(grafo, rutaOptimaBktr);
+    verificarSolucion("Backtracking", rutaOptimaBktr, distanciaBacktracking, 0);
+
+    // Backtracking
+
+    // Greedy
+    Greedy greedy = new Greedy();
+    List<Integer> tunelesGreedy = greedy.solve(grafo);
+    System.out.println(tunelesGreedy);
+    int distanciaGreedy = calcularDistanciaRuta(grafo, tunelesGreedy);
+    verificarSolucion("Greedy", tunelesGreedy, distanciaGreedy, 0);
+    */
 
     private int calcularDistanciaRuta(GrafoDirigido<Integer> grafo, List<Integer> ruta) {
         int distanciaTotal = 0;

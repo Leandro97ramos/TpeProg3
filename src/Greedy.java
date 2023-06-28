@@ -1,7 +1,66 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Iterator;
 
+
+
+public class Greedy {
+
+    public List<Arco<Integer>> encontrarRutaOptima(GrafoDirigido<Integer> grafo) {
+        List<Arco<Integer>> rutaOptima = new ArrayList<>();
+        Set<Integer> estacionesVisitadas = new HashSet<>();
+        int distanciaTotal = 0;
+
+        int estacionActual = 1; // Comenzar en la estación 1
+
+        while (estacionesVisitadas.size() < grafo.cantidadVertices() - 1) {
+            
+            List<Arco<Integer>> arcosDisponibles = grafo.obtenerArcosAdyacentes(estacionActual);
+            Arco<Integer> mejorArco = null;
+            int mejorDistancia = Integer.MAX_VALUE;
+
+            for (Arco<Integer> arco : arcosDisponibles) {
+                int estacionDestino = arco.getVerticeDestino();
+                if (!estacionesVisitadas.contains(estacionDestino)) {
+                    int distanciaArco = arco.getEtiqueta();
+                    if (distanciaArco < mejorDistancia) {
+                        mejorArco = arco;
+                        mejorDistancia = distanciaArco;
+                    }
+                }
+            }
+
+            if (mejorArco != null) {
+                rutaOptima.add(mejorArco);
+                estacionesVisitadas.add(mejorArco.getVerticeDestino());
+                distanciaTotal += mejorDistancia;
+                estacionActual = mejorArco.getVerticeDestino();
+            } else {
+                break; // No hay más arcos disponibles, terminar el algoritmo
+            }
+        }
+
+        System.out.println("Distancia total de la ruta óptima (greedy): " + distanciaTotal);
+        return rutaOptima;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 public class Greedy {
 
    public List<Integer> solve(GrafoDirigido<Integer> grafo) {
@@ -70,3 +129,8 @@ private int encontrarEstacionMasCercana(GrafoDirigido<Integer> grafo, int estaci
     }
     
 }
+
+
+
+ 
+ */

@@ -140,6 +140,15 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	    return listaArcos.iterator();
 	}
 
+	public List<Arco<T>> obtenerListArcos() {
+		List<Arco<T>> listaArcos = new ArrayList<>();
+	    for (List<Arco<T>> arcs : graf.values()) {
+	        listaArcos.addAll(arcs);
+	    }
+	    return listaArcos;
+
+	}
+
 /*Complejidad:	O(1),No se realiza un recorrido completo de todos los arcos del gráfico, solo se accede directamente a la lista correspondiente al vértice. El costo es constante, no depende del tamaño  */
 
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
@@ -150,7 +159,8 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	    	return null;
 	    }
 	}
-	/* */
+
+	
 
 	@Override
 	public int getCantidadEstaciones() {
