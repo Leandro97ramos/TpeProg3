@@ -45,7 +45,7 @@ public class main {
 
 		Backtracking backtracking = new Backtracking();
 		List<Arco<Integer>> rutaOptimaBacktracking = backtracking.backtr(grafo);
-
+		System.out.println("Combinaciones de backtracking: " + backtracking.getCombinaciones());
 		for (Arco<Integer> tunel : rutaOptimaBacktracking) {
 			System.out.println("EstacionA: " + tunel.getVerticeOrigen());
 			System.out.println("EstacionB: " + tunel.getVerticeDestino());
@@ -53,10 +53,10 @@ public class main {
 			System.out.println();
 		}
 		//combinaicones de backtracking
-		System.out.println("Combinaciones de backtracking: " + backtracking.getCombinaciones());
 
 		Greedy greedy = new Greedy();
 		List<Arco<Integer>> rutaOptimaGreedy = greedy.encontrarRutaOptima(grafo);
+		System.out.println("Combinaciones de greedy: " + greedy.getCombinaciones());
 		for (Arco<Integer> tunel : rutaOptimaGreedy) {
 			System.out.println("EstacionA: " + tunel.getVerticeOrigen());
 			System.out.println("EstacionB: " + tunel.getVerticeDestino());
@@ -64,7 +64,6 @@ public class main {
 			System.out.println();
 		}
 		//combinaciones de greedy
-		System.out.println("Combinaciones de greedy: " + greedy.getCombinaciones());
 		
 
 	
