@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
 public class Backtracking {
 
@@ -9,6 +8,9 @@ public class Backtracking {
     private int cantidadEstaciones;
     private int combinaciones;
 
+    /*
+        Costo computacional: O(2^N)
+     */ 
     public List<Arco<Integer>> backtr(GrafoDirigido<Integer> grafo) {
         List<Arco<Integer>> tuneles = grafo.obtenerListArcos();
         List<Arco<Integer>> parcial = new ArrayList<>();
@@ -21,6 +23,9 @@ public class Backtracking {
         return mejorRuta;
     }
 
+    /*
+        Costo computacional: O(2^N)
+     */
     private void back(List<Arco<Integer>> parcial, int i, List<Arco<Integer>> tuneles) {
          combinaciones++;
         if (i == tuneles.size()) {
@@ -39,6 +44,10 @@ public class Backtracking {
         }
     }
 
+    /*
+        Costo computacional: O(N)
+     */
+
     private boolean esSolucion(List<Arco<Integer>> parcial) {
         UnionFind uf = new UnionFind(cantidadEstaciones);
         for (Arco<Integer> tunel : parcial) {
@@ -49,6 +58,9 @@ public class Backtracking {
         return uf.componentesConectados() == 1 && parcial.size() == cantidadEstaciones - 1;
     }
 
+    /*
+        Costo computacional: O(N)
+     */
     private int calcularDistancia(List<Arco<Integer>> parcial) {
         int distancia = 0;
         for (Arco<Integer> tunel : parcial) {
@@ -57,6 +69,21 @@ public class Backtracking {
         return distancia;
     }
 
+
+    /*
+        Costo computacional: O(N) 
+    */
+
+    public int getDistanciaTotal() {
+        int distancia = 0;
+        for (Arco<Integer> tunel : mejorRuta) {
+            distancia += tunel.getEtiqueta();
+        }
+        return distancia;
+    }
+    /*
+        Costo computacional: O(1)       
+     */
     public int getCombinaciones() {
         return combinaciones;
     }

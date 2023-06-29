@@ -29,9 +29,7 @@ public interface Grafo<T> {
 	
 	public Iterator<Arco<T>> obtenerArcos(int verticeId);
 
-    public int getCantidadEstaciones();
-
-    public int getDistancia(int estacionActual, int i);
+  
 
 	
 	

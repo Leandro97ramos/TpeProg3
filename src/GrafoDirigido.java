@@ -14,11 +14,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		graf = new HashMap<>();
 	}
 	
-	//VERTICE -> NODO || ARCO/ARISTA = LA UNION ENTRE 2 VERRITCES
+	
 	/*
-
- 	  Complejidad: O(1) ya que no es necesario recorrer todos los arcos para encontrar el vertice
-
+		Costo computacional: O(1). 
+	 
 	 */
 	public void agregarVertice(int verticeId) {
 		//sino esta mapeado
@@ -28,10 +27,11 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		}
 	}
 	
-	
 	/*
-	  Complejidad: O(1) ya que no es necesario recorrer todos los arcos para encontrar el vertice
-	 * */
+	 	Costo computacional: O(1).
+	  
+	 */
+	
 	public void borrarVertice(int verticeId) {
 		
 		if (graf.containsKey(verticeId)) {
@@ -40,10 +40,15 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		
 	}
 	
+	/*
+		
+		Costo computacional: O(n).
+		
+	 */
 
-/* Complejidad:O(1)
-   No requiere recorrer todos los arcos del gráfico, solo accede directamente a la lista asociada al vértice
-*/
+	 
+
+
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
 		Arco<T> arc = new Arco<>(verticeId1, verticeId2, etiqueta);
 		if (!existeArco(verticeId1, verticeId2)) {			
@@ -57,10 +62,12 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		
 		}
 	}
-/*
- 	Complejidad: O(n) ya que al no conocer en que vertice existe un arco 
- 	el peor caso es que sea en la ultima iteracion
- */
+
+	/*
+	 
+		Costo computacional: O(n).
+	 */
+
 	public boolean existeArco(int verticeId1, int verticeId2) {
 			//obtengo el array de arcos
 		 List<Arco<T>> listaArcos = graf.get(verticeId1);
@@ -73,6 +80,12 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		    return false;
 	}
 	
+
+
+	/*
+		Costo computacional: O(n).
+	 */
+
 	public void borrarArco(int verticeId1 , int verticeId2) {
 		if (existeArco(verticeId1, verticeId2)) {
 			List<Arco<T>> listaArcos = graf.get(verticeId1);
@@ -85,11 +98,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 			}
 		}
 	}
+
+	/*
+		Costo computacional: O(1).
+	*/
 	
 	public boolean contieneVertice(int verticeId) {
 		return graf.containsKey(verticeId);
 	}
 
+
+	/*
+		Costo computacional: O(n).
+	 
+	 */
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2){
 		List<Arco<T>> listaArcos = graf.get(verticeId1);
 		for (Arco<T> arco : listaArcos) {
@@ -100,11 +122,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return null;
 	}
 	
+	/*
+		Costo computacional: O(1).
+	
+	 
+	 */
+
 	public int cantidadVertices() {
 		return graf.size();
 
 	}
-	
+	 /*
+	 	Costo computacional: O(n).	
+ 
+	 */
 	public int cantidadArcos() {
 		int cantidad = 0;
 		for (List<Arco<T>> listaArcos : graf.values()) {
@@ -112,12 +143,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		}
 		return cantidad;
 	}
-/*Complejidad:	O(1), El costo es constante */
+	/*
+		Costo computacional: O(1). 
+	 
+	 */
 	public  Iterator<Integer>  obtenerVertices(){
 		Set<Integer> verticesSet = graf.keySet();
 		return verticesSet.iterator();
 	}
-	
+
+	/*
+		Costo computacional: O(m). donde m es la cantidad de arcos asosiados
+		al vertice. si la lista de arcos no esta llena , es menor a m.  
+
+	 */
 	public Iterator<Integer> obtenerAdyacentes(int verticeId){
 		List<Integer> listaAdyacentes = new ArrayList<>();
 	    List<Arco<T>> listaArcos = graf.get(verticeId);
@@ -130,8 +169,11 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 		
 	}
-	
-/*Complejidad:	O(n), El costo está determinado por el número total de arcos en el gráfico. */
+
+	/*
+		Costo computacional: O(m). donde m es la cantidad de arcos asosiados
+
+	 */
 	public Iterator<Arco<T>> obtenerArcos() {
 		List<Arco<T>> listaArcos = new ArrayList<>();
 	    for (List<Arco<T>> arcs : graf.values()) {
@@ -140,6 +182,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	    return listaArcos.iterator();
 	}
 
+	/*
+		Costo computacional: O(m). 
+
+	 */
 	public List<Arco<T>> obtenerListArcos() {
 		List<Arco<T>> listaArcos = new ArrayList<>();
 	    for (List<Arco<T>> arcs : graf.values()) {
@@ -149,8 +195,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	}
 
-/*Complejidad:	O(1),No se realiza un recorrido completo de todos los arcos del gráfico, solo se accede directamente a la lista correspondiente al vértice. El costo es constante, no depende del tamaño  */
-
+	/*
+		Costo computacional: O(m) 
+	 
+	 */
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
 	    List<Arco<T>> listaArcos = graf.get(verticeId);
 	    if (listaArcos != null) {
@@ -160,18 +208,6 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	    }
 	}
 
-	
 
-	@Override
-	public int getCantidadEstaciones() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getCantidadEstaciones'");
-	}
-
-	@Override
-	public int getDistancia(int estacionActual, int i) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getDistancia'");
-	}
 }
 

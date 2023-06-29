@@ -43,8 +43,11 @@ public class main {
 		CSVReader reader = new CSVReader(path);
 		GrafoDirigido<Integer> grafo = reader.read();
 
-		Backtracking backtracking = new Backtracking();
+	/* 	Backtracking backtracking = new Backtracking();
 		List<Arco<Integer>> rutaOptimaBacktracking = backtracking.backtr(grafo);
+		
+		System.out.println("Metrica de backtracking: " + backtracking.getCombinaciones());
+		System.out.println("Distancia total: " + backtracking.getDistanciaTotal());
 
 		for (Arco<Integer> tunel : rutaOptimaBacktracking) {
 			System.out.println("EstacionA: " + tunel.getVerticeOrigen());
@@ -52,19 +55,21 @@ public class main {
 			System.out.println("Distancia: " + tunel.getEtiqueta());
 			System.out.println();
 		}
-		//combinaicones de backtracking
-		System.out.println("Combinaciones de backtracking: " + backtracking.getCombinaciones());
-
+*/
+		
 		Greedy greedy = new Greedy();
 		List<Arco<Integer>> rutaOptimaGreedy = greedy.encontrarRutaOptima(grafo);
+		
+		System.out.println("Metrica de greedy: " + greedy.getCombinaciones());
+		System.out.println("Distancia total: " + greedy.getDistanciaTotal());
+
 		for (Arco<Integer> tunel : rutaOptimaGreedy) {
 			System.out.println("EstacionA: " + tunel.getVerticeOrigen());
 			System.out.println("EstacionB: " + tunel.getVerticeDestino());
 			System.out.println("Distancia: " + tunel.getEtiqueta());
 			System.out.println();
 		}
-		//combinaciones de greedy
-		System.out.println("Combinaciones de greedy: " + greedy.getCombinaciones());
+
 		
 
 	
