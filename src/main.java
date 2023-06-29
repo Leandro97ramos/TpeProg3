@@ -43,7 +43,7 @@ public class main {
 		CSVReader reader = new CSVReader(path);
 		GrafoDirigido<Integer> grafo = reader.read();
 
-	/* 	Backtracking backtracking = new Backtracking();
+	 	Backtracking backtracking = new Backtracking();
 		List<Arco<Integer>> rutaOptimaBacktracking = backtracking.backtr(grafo);
 		
 		System.out.println("Metrica de backtracking: " + backtracking.getCombinaciones());
@@ -55,7 +55,7 @@ public class main {
 			System.out.println("Distancia: " + tunel.getEtiqueta());
 			System.out.println();
 		}
-*/
+
 		
 		Greedy greedy = new Greedy();
 		List<Arco<Integer>> rutaOptimaGreedy = greedy.encontrarRutaOptima(grafo);
